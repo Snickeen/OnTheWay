@@ -26,7 +26,7 @@ const LL MAXN = 1e6+7;
 * 输出a.print();
 * 注意这个输入不能自动去掉前导0的，可以先读入到char数组，去掉前导0，再用构造函数。
 */
-typedef int INT
+typedef LL INT;
 #define MAXB 9999
 #define MAXSIZE 1010
 #define DLEN 4
@@ -278,25 +278,36 @@ void BigNum::print(){
 }
 //<<<<<<<<<<<<<<BigNum<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-LL t,p;
-BigNum_ ans,n,res;
+LL t,p,m;
+BigNum ans,n,res;
+char s[MAXN];
 
 signed main()
 {
-    ios_base::sync_with_stdio(0);cin.tie(0);//cout<<fixed<<setprecision(9);
-    cin>>t;
+    //因为BigNum类的print是用的printf,所以要注释掉下面这个取消同步
+    //ios_base::sync_with_stdio(0);cin.tie(0);//cout<<fixed<<setprecision(9);
+    scanf("%lld",&t);
     while(t--){
-        cin>>n>>p;
-        if(n<2){
-            cout<<"0"<<endl;
+        scanf("%s%lld",s,&p);
+        if(strlen(s)==1&&(s[0]=='0'||s[1]=='1')){
+            puts("0");
             continue;
         }
+        //cin>>n>>p;
+        /*if(n==0 || n==1){//没有重载==
+            cout<<"0"<<endl;
+            continue;
+        }*/
+        n=BigNum(s);
+        //n.print();
         ans=n+1;
         res=1;
         while(n>0){
-            res*=n%p+1;
+            m=n%p;
+            res=res*(m+1);
+            n=n/p;
         }
-        ans-=res;
+        ans=ans-res;
         ans.print();
     }
     return 0;
