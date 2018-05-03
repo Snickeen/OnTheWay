@@ -2,7 +2,7 @@
  * Author: Snickeen.
  * Email: ff@snickeen.com
  * Time: 2018_05_03_4
- * If you find some bugs, please tell me. Thanks.
+ * If you find out some bugs, please tell me. Thanks.
 **/
 
 #include<stdio.h>
